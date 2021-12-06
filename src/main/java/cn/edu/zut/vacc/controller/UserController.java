@@ -16,7 +16,6 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserService userService;
-
     /**
      * 查询所有记录
      * @return
@@ -35,7 +34,6 @@ public class UserController {
         log.info("总记录数：" + page.getTotal());
         return page;
     }
-
     /**
      * 根据id获取数据
      * @param
@@ -48,7 +46,6 @@ public class UserController {
         log.info("查到了对象：" + userSelect);
         return Result.ok(userSelect);
     }
-
     /**
      * 根据id更新数据
      * @param user
@@ -62,7 +59,6 @@ public class UserController {
         }
         return Result.ok();
     }
-
     /**
      * 新增用户
      * @param user
@@ -80,7 +76,6 @@ public class UserController {
             return Result.build(-1,e.getMessage());
         }
     }
-
     /**
      * 删除用户
      * @param user
