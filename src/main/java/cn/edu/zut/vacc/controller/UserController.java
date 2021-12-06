@@ -50,7 +50,6 @@ public class UserController {
     @DeleteMapping
     public Result deleteBatch(@RequestBody List<Integer> ids){
         return userService.removeByIds(ids)?Result.ok("删除成功"):Result.error("删除失败");
-
     }
 }
 
