@@ -1,9 +1,15 @@
 package cn.edu.zut.vacc.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import cn.edu.zut.vacc.po.UserVaccine;
+import cn.edu.zut.vacc.po.Vaccine;
+import cn.edu.zut.vacc.service.UserVaccineService;
+import cn.edu.zut.vacc.service.VaccineService;
+import cn.edu.zut.vacc.vo.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +22,36 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/vaccine")
 public class VaccineController {
+    @Autowired
+    VaccineService vaccineService;
+    @PostMapping("/list")
+    public List<Vaccine> list(){
+        return vaccineService.list();
+    }
+    @PostMapping
+    public Result add(@RequestBody Vaccine vaccine){
+        return vaccineService.save(vaccine)?Result.ok("保存成功"):Result.error("保存失败");
 
+    }
+    @PutMapping
+    public Result update(@RequestBody  Vaccine vaccine){
+        return vaccineService.updateById(vaccine)?Result.ok("修改成功"):Result.error("修改失败");
+
+    }
+
+    @DeleteMapping("/{id}")
+    public Result delete(@PathVariable("id") Integer id){
+        return vaccineService.removeById(id)?Result.ok("删除成功"):Result.error("删除失败");
+
+    }
+    @PostMapping("/batch")
+    public Result addBatch(@RequestBody  List<Vaccine> vaccine){
+        return vaccineService.saveBatch(vaccine)?Result.ok("保存成功"):Result.error("保存失败");
+
+    }
+    @DeleteMapping
+    public Result deleteBatch(@RequestBody List<Integer> ids){
+        return vaccineService.removeByIds(ids)?Result.ok("删除成功"):Result.error("删除失败");
+
+    }
 }
