@@ -1,97 +1,56 @@
 package cn.edu.zut.vacc.controller;
 
 
-import cn.edu.zut.vacc.po.Result;
 import cn.edu.zut.vacc.po.User;
 import cn.edu.zut.vacc.service.UserService;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import lombok.extern.slf4j.Slf4j;
+import cn.edu.zut.vacc.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+/**
+ * <p>
+ *  前端控制器
+ * </p>
+ *
+ * @author wang
+ * @since 2021-12-05
+ */
 @RestController
-@Slf4j
 @RequestMapping("/user")
 public class UserController {
     @Autowired
     UserService userService;
-    /**
-     * 查询所有记录
-     * @return
-     */
-    @GetMapping("/getAllUser")
-    public Page<User> getAllUser() {
-        List<User> list = userService.list();
-        for (User user : list) {
-            log.info(user.toString());
-        }
-        //构建分页对象
-        Page<User> userPage = new Page<>(2,2);
-        //第一个参数为分页对象，第二个为查询条件（可以不写）
-        Page<User> page = userService.page(userPage, null);
-        log.info("总页码：" + page.getPages());
-        log.info("总记录数：" + page.getTotal());
-        return page;
+    @PostMapping("/list")
+    public List<User> list(){
+        return userService.list();
     }
-    /**
-     * 根据id获取数据
-     * @param
-     * @return
-     */
-    @RequestMapping(value = "/getUserById",method = RequestMethod.POST)
-    public Result getUserById(@RequestBody User user){
-        log.info("收到了请求：" + user.getId());
-        User userSelect = userService.getById(user.getId());
-        log.info("查到了对象：" + userSelect);
-        return Result.ok(userSelect);
+    @PostMapping
+    public Result add(@RequestBody  User user){
+        return userService.save(user)?Result.ok("保存成功"):Result.error("保存失败");
+
     }
-    /**
-     * 根据id更新数据
-     * @param user
-     * @return
-     */
-    @PostMapping("/update")
-    public Result updateById(@RequestBody User user){
-        boolean ret = userService.updateById(user);
-        if (!ret){
-            return Result.build(-1,"更新失败");
-        }
-        return Result.ok();
+    @PutMapping
+    public Result update(@RequestBody  User user){
+        return userService.updateById(user)?Result.ok("修改成功"):Result.error("修改失败");
+
     }
-    /**
-     * 新增用户
-     * @param user
-     * @return
-     */
-    @PostMapping("/save")
-    public Result saveUser(@RequestBody User user){
-        try {
-            boolean ret = userService.save(user);
-            if (!ret){
-                return Result.build(-1,"新增失败");
-            }
-            return Result.ok();
-        } catch (Exception e) {
-            return Result.build(-1,e.getMessage());
-        }
+
+    @DeleteMapping("/{id}")
+    public Result delete(@PathVariable("id") Integer id){
+        return userService.removeById(id)?Result.ok("删除成功"):Result.error("删除失败");
+
     }
-    /**
-     * 删除用户
-     * @param user
-     * @return
-     */
-    @PostMapping("/delete")
-    public Result deleteUser(@RequestBody User user){
-        try {
-            boolean ret = userService.removeById(user.getId());
-            if (!ret){
-                return Result.build(-1,"删除失败");
-            }
-            return Result.ok();
-        } catch (Exception e) {
-            return Result.build(-1,e.getMessage());
-        }
+    @PostMapping("/batch")
+    public Result addBatch(@RequestBody  List<User> user){
+        return userService.saveBatch(user)?Result.ok("保存成功"):Result.error("保存失败");
+
+    }
+    @DeleteMapping
+    public Result deleteBatch(@RequestBody List<Integer> ids){
+        return userService.removeByIds(ids)?Result.ok("删除成功"):Result.error("删除失败");
+
     }
 }
 
