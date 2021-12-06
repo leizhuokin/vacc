@@ -25,7 +25,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @TableName("user")
 public class User extends Model<User> {
-
     private static final long serialVersionUID = 1L;
 
     /**
@@ -106,4 +105,6 @@ public class User extends Model<User> {
         return this.uid;
     }
 
+    public Serializable getId() {return null;
+    }
 }
