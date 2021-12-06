@@ -2,4 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.zut.vacc.mapper.UserMapper">
 
+    <select id="listAll" resultType="cn.edu.zut.vacc.po.User">
+        select u.number,u.real_name,u.order_time,
+               v.vname,
+               uv.inoculation_time
+        from `user` u ,`vaccine` v,`user_vaccine` uv
+        where u.uid=uv.uid and v.vid=uv.vid
+    </select>
 </mapper>

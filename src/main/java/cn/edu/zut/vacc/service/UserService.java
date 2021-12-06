@@ -4,6 +4,8 @@ import cn.edu.zut.vacc.po.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -15,4 +17,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserService extends IService<User> {
 
+    List<User> listAll();
 }
