@@ -28,17 +28,34 @@ public class VaccineController {
     public List<Vaccine> list(){
         return vaccineService.list();
     }
+
+    /**
+     * 添加数据
+     * @param vaccine
+     * @return
+     */
     @PostMapping
     public Result add(@RequestBody Vaccine vaccine){
         return vaccineService.save(vaccine)?Result.ok("保存成功"):Result.error("保存失败");
 
     }
+
+    /**
+     * 更新数据
+     * @param vaccine
+     * @return
+     */
     @PutMapping
     public Result update(@RequestBody  Vaccine vaccine){
         return vaccineService.updateById(vaccine)?Result.ok("修改成功"):Result.error("修改失败");
 
     }
 
+    /**
+     * 根据id删除数据
+     * @param id
+     * @return
+     */
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable("id") Integer id){
         return vaccineService.removeById(id)?Result.ok("删除成功"):Result.error("删除失败");
@@ -49,6 +66,12 @@ public class VaccineController {
         return vaccineService.saveBatch(vaccine)?Result.ok("保存成功"):Result.error("保存失败");
 
     }
+
+    /**
+     * 批量删除
+     * @param ids
+     * @return
+     */
     @DeleteMapping
     public Result deleteBatch(@RequestBody List<Integer> ids){
         return vaccineService.removeByIds(ids)?Result.ok("删除成功"):Result.error("删除失败");
