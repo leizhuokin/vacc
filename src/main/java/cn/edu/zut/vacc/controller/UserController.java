@@ -4,11 +4,14 @@ package cn.edu.zut.vacc.controller;
 import cn.edu.zut.vacc.po.User;
 import cn.edu.zut.vacc.service.UserService;
 import cn.edu.zut.vacc.vo.Result;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Queue;
 
 /**
  * user前端控制器
@@ -42,12 +45,18 @@ public class UserController {
     }
     /**
      * 根据id查询用户
-     * @param ids
+     * @param
      * @return
      */
-    @PostMapping("/listByIds")
-    public List<User> listById(@RequestBody List<Integer> ids){
+    @PostMapping("/selectWrapper")
+    /*public List<User> listById(@RequestBody List<Integer> ids){
         return userService.listByIds(ids);
+    }*/
+    public List<User> selectWrapper(){
+        QueryWrapper<User> wrapper =new QueryWrapper<>();
+        wrapper.select("number","password")
+                .like( "uid","1002");
+        return userService.list(wrapper);
     }
     /**
      * 添加数据
