@@ -61,7 +61,7 @@ public class User extends Model<User> {
      * 性别：默认为0保密,1为男，2为女
      */
     @TableField("gender")
-    private Boolean gender;
+    private Integer gender;
 
     /**
      * 手机号：保证唯一

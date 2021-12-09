@@ -25,4 +25,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public List<User> listAll() {
         return userMapper.listAll();
     }
+
+    @Override
+    public Boolean login(String username, String password) {
+        User user = userMapper.login(username);
+        return user!=null && user.getPassword().equals(password);
+    }
 }

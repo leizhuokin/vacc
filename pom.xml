@@ -88,6 +88,11 @@
             <artifactId>beetl</artifactId>
             <version>3.8.1.RELEASE</version>
         </dependency>
+<!--        Thymeleaf模板依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

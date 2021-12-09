@@ -3,10 +3,26 @@
 <mapper namespace="cn.edu.zut.vacc.mapper.UserMapper">
 
     <select id="listAll" resultType="cn.edu.zut.vacc.po.User">
-        select u.number,u.real_name,u.order_time,
+        select u.number,
+               u.real_name,
+               u.order_time,
                v.vname,
                uv.inoculation_time
-        from `user` u ,`vaccine` v,`user_vaccine` uv
-        where u.uid=uv.uid and v.vid=uv.vid
+        from `user` u,
+             `vaccine` v,
+             `user_vaccine` uv
+        where u.uid = uv.uid
+          and v.vid = uv.vid
+    </select>
+    <select id="login" resultType="cn.edu.zut.vacc.po.User">
+        select u.uid       as id,
+               u.number    as number,
+               u.password  as password,
+               u.real_name as name,
+               u.nickname,
+               u.gender,
+               u.age
+        from `user` u
+        where u.number = #{username} limit 1
     </select>
 </mapper>

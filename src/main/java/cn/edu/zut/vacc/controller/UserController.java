@@ -6,6 +6,7 @@ import cn.edu.zut.vacc.service.UserService;
 import cn.edu.zut.vacc.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -17,6 +18,20 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserService userService;
+    @PostMapping("/login")
+    public ModelAndView login(String username, String password, ModelAndView mav){
+        Boolean result = userService.login(username,password);
+        if(result){
+            List<User> users = userService.list();
+            mav.setViewName("/success");
+            mav.addObject("msg","登录成功");
+            mav.addObject("users",users);
+        }else{
+            mav.setViewName("/login");
+            mav.addObject("msg","用户名或密码错误");
+        }
+        return mav;
+    }
     /**
      * 查询所有用户
      * @return
