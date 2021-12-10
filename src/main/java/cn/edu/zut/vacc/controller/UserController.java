@@ -1,6 +1,5 @@
 package cn.edu.zut.vacc.controller;
 
-
 import cn.edu.zut.vacc.po.User;
 import cn.edu.zut.vacc.service.UserService;
 import cn.edu.zut.vacc.vo.Result;
