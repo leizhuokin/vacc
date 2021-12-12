@@ -11,8 +11,14 @@
 <table class="table table-hover">
     <thead>
     <th>ID</th>
-    <th>用户名</th>
+    <th>身份证号码</th>
     <th>密码</th>
+    <th>昵称</th>
+    <th>真实姓名</th>
+    <th>性别</th>
+    <th>手机号</th>
+    <th>年龄</th>
+    <th>预约时间</th>
     </thead>
     <tbody id="info">
 
@@ -32,8 +38,14 @@
                 for (i in user) {
                     str = "<tr>" +
                         "<td>" + user[i].uid + "</td>" +
-                        "<td>" + user[i].nickname+ "</td>" +
+                        "<td>" + user[i].number+ "</td>" +
                         "<td>" + user[i].password + "</td>" +
+                        "<td>" + user[i].nickname + "</td>" +
+                        "<td>" + user[i].realName + "</td>" +
+                        "<td>" + user[i].gender + "</td>" +
+                        "<td>" + user[i].phone + "</td>" +
+                        "<td>" + user[i].age + "</td>" +
+                        "<td>" + user[i].orderTime + "</td>" +
                         "</tr>";
                     $("#info").append(str);
                 }

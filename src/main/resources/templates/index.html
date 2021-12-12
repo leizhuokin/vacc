@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="short icon" href="../static/img">
     <title>Title</title>
 </head>
 <style>
@@ -60,13 +61,14 @@
     }
 
     .wel{
+        font-family: Microsoft Yahei;
         width: 960px;
-        height: 35px;
-        color: #fff;
-        font-size: 30px;
+        height: 70px;
+        color: #000002;
+        font-size: 60px;
         position: absolute;
-        top: -7rem;
-        text-align: center;
+        top: 7rem;
+        right: 8rem;
 
 
     }.wel1{
@@ -105,22 +107,24 @@
     }
 </style>
 <body>
-<img class="bgone" src="img/1.jpg" />
-<img class="pic" src="img/a.png" />
+<img class="bgone" src="/img/1.jpg" />
+<img class="pic" src="/img/a.png" />
 <!--<input type="button" value="点击登录" onclick="window.location.href='/login'">-->
 <div>
     <span th:text="${msg}">
     </span>
 </div>
 
-<div class="wel">某某系统后台登录</div>
-
+<div class="wel">疫苗接种信息后台管理系统</div>
 
 <form th:action="@{/user/login}" th:method="post">
     <div class="user">
+        <div id="yonghu" style=""><img src="/img/yhm.png" alt=""></div>
         <input id="username" type="text" name="username" placeholder="请输入用户名">
     </div>
     <div class="password">
+        <div id="yonghu"><img src="/0
+        img/mm.png" /></div>
         <input id="password" type="password" name="password" placeholder="请输入密码">
     </div>
     <button class="btn" type="submit">登 录</button>
