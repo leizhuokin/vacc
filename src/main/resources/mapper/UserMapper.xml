@@ -25,4 +25,7 @@
         from `user` u
         where u.number = #{username} limit 1
     </select>
+    <select id="selectUserAll" resultType="cn.edu.zut.vacc.po.User">
+        select * from user
+    </select>
 </mapper>
