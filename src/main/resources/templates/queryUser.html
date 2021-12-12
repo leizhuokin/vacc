@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<table class="table table-hover">
+    <thead>
+    <th>ID</th>
+    <th>用户名</th>
+    <th>密码</th>
+    </thead>
+    <tbody id="info">
+
+    </tbody>
+</table>
+<script>
+    $(function () {
+        $.ajax({
+            type: "post",
+            url: "/user/selectUserAll",
+            data: {current: 1, size: 10},
+            dataType: "json",
+            success: function (data) {
+                $("#info").empty();
+                var user = data.records;
+                var str;
+                for (i in user) {
+                    str = "<tr>" +
+                        "<td>" + user[i].uid + "</td>" +
+                        "<td>" + user[i].nickname+ "</td>" +
+                        "<td>" + user[i].password + "</td>" +
+                        "</tr>";
+                    $("#info").append(str);
+                }
+            }
+        })
+    });
+</script>
+</body>
+</html>

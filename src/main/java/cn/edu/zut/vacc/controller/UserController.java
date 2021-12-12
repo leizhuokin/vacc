@@ -3,19 +3,20 @@ package cn.edu.zut.vacc.controller;
 import cn.edu.zut.vacc.po.User;
 import cn.edu.zut.vacc.service.UserService;
 import cn.edu.zut.vacc.vo.Result;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Queue;
 
 /**
  * user前端控制器
  */
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
     @Autowired
@@ -25,11 +26,11 @@ public class UserController {
         Boolean result = userService.login(username,password);
         if(result){
             List<User> users = userService.list();
-            mav.setViewName("/success");
+            mav.setViewName("menu");
             mav.addObject("msg","登录成功");
             mav.addObject("users",users);
         }else{
-            mav.setViewName("/login");
+            mav.setViewName("index");
             mav.addObject("msg","用户名或密码错误");
         }
         return mav;
@@ -108,5 +109,17 @@ public class UserController {
     @PostMapping("/listAll")
     public  List<User> listAll(){
         return userService.listAll();
+    }
+
+    /**
+     * 分页查询
+     * @param page
+     * @return
+     */
+    @PostMapping("/selectUserAll")
+    @ResponseBody
+    public IPage<User> selectUserAll(Page<User> page){
+        IPage<User> userIPage=userService.selectUserAll(page);
+        return userIPage;
     }
 }
