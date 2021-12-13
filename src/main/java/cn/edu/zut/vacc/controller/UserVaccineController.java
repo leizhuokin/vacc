@@ -41,7 +41,6 @@ public class UserVaccineController {
         IPage<UserVaccine> userIPage=userVaccineService.selectUVAll(page);
         return userIPage;
     }
-
     /**
      * 添加数据
      * @param userVaccine

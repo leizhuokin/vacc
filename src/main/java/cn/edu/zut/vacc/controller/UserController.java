@@ -36,27 +36,14 @@ public class UserController {
         return mav;
     }
     /**
-     * 查询所有用户
+     * 分页查询查询所有用户
      * @return
      */
-    @PostMapping("/list")
-    public List<User> list(){
-        return userService.list();
-    }
-    /**
-     * 根据id查询用户
-     * @param
-     * @return
-     */
-    @PostMapping("/selectWrapper")
-    /*public List<User> listById(@RequestBody List<Integer> ids){
-        return userService.listByIds(ids);
-    }*/
-    public List<User> selectWrapper(){
-        QueryWrapper<User> wrapper =new QueryWrapper<>();
-        wrapper.select("number","password")
-                .like( "uid","1002");
-        return userService.list(wrapper);
+    @PostMapping("/selectUserAll")
+    @ResponseBody
+    public IPage<User> selectUserAll(Page<User> page){
+        IPage<User> userIPage=userService.selectUserAll(page);
+        return userIPage;
     }
     /**
      * 添加数据
@@ -114,17 +101,5 @@ public class UserController {
     @PostMapping("/listAll")
     public  List<User> listAll(){
         return userService.listAll();
-    }
-
-    /**
-     * 分页查询
-     * @param page
-     * @return
-     */
-    @PostMapping("/selectUserAll")
-    @ResponseBody
-    public IPage<User> selectUserAll(Page<User> page){
-        IPage<User> userIPage=userService.selectUserAll(page);
-        return userIPage;
     }
 }

@@ -5,14 +5,14 @@
        update `user` u set u.number =#{number},
                            u.password=#{password},
                            u.nickname=#{nickname},
-                           u.real_name=#{real_name},
+                           u.real_name=#{realName},
                            u.gender=#{gender},
                            u.phone=#{phone},
                            u.age=#{age},
                            u.birthday=#{birthday},
-                           u.create_time=#{create_time},
-                           u.update_time=#{update_time},
-                           u.order_time=#{order_time}
+                           u.create_time=#{createTime},
+                           u.update_time=#{updateTime},
+                           u.order_time=#{orderTime}
        where uid=#{uid}
     </update>
 

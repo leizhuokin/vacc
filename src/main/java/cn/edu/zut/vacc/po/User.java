@@ -56,7 +56,7 @@ public class User extends Model<User> {
      * 真实姓名
      */
     @TableField("real_name")
-    private String real_name;
+    private String realName;
 
     /**
      * 性别：默认为0保密,1为男，2为女
@@ -86,19 +86,19 @@ public class User extends Model<User> {
      * 创建时间
      */
     @TableField("create_time")
-    private Date create_time;
+    private Date createTime;
 
     /**
      * 更新时间
      */
     @TableField("update_time")
-    private Date update_time;
+    private Date updateTime;
 
     /**
      * 预约时间
      */
     @TableField("order_time")
-    private Date order_time;
+    private Date orderTime;
 
 
     @Override
