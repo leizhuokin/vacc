@@ -15,10 +15,6 @@ public class IndexController {
     public String queryUser(){
         return "queryUser";
     }
-    @RequestMapping("/index")
-    public String index(){
-        return "index";
-    }
     @RequestMapping("/queryVaccine")
     public String queryVaccine(){
         return "queryVaccine";
@@ -26,5 +22,9 @@ public class IndexController {
     @RequestMapping("/queryUservaccine")
     public String queryUservaccine(){
         return "queryUservaccine";
+    }
+    @RequestMapping("/index")
+    public String index(){
+        return "index";
     }
 }

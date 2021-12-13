@@ -105,6 +105,5 @@ public class User extends Model<User> {
         return this.uid;
     }
 
-    public Serializable getId() {return null;
-    }
+    public Serializable getId() {return null;}
 }

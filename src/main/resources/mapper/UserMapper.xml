@@ -7,6 +7,7 @@
        where uid=#{uid}
     </update>
 
+
     <select id="listAll" resultType="cn.edu.zut.vacc.po.User">
         select u.number,
                u.real_name,
