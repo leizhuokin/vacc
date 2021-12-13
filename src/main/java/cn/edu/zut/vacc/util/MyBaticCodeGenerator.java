@@ -40,7 +40,7 @@ public class MyBaticCodeGenerator {
                 .author(author == null ? System.getProperty("user.name") : author) // 设置作者
                 //.enableSwagger() // 开启 swagger 模式
                 .outputDir(projectPath + "/src/main/java")// 指定输出目录
-                .dateType(DateType.TIME_PACK)//时间策略:DateType.ONLY_DATE 默认值: DateType.TIME_PACK
+                .dateType(DateType.ONLY_DATE)//时间策略:DateType.ONLY_DATE 默认值: DateType.TIME_PACK
                 .commentDate("yyyy-MM-dd");//注释日期:默认值: yyyy-MM-dd
         if(override) globalConfig.fileOverride(); // 覆盖已生成文件
         //包配置

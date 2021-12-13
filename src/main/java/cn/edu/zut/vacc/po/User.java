@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.Getter;
@@ -55,7 +56,7 @@ public class User extends Model<User> {
      * 真实姓名
      */
     @TableField("real_name")
-    private String realName;
+    private String real_name;
 
     /**
      * 性别：默认为0保密,1为男，2为女
@@ -79,25 +80,25 @@ public class User extends Model<User> {
      * 出生日期
      */
     @TableField("birthday")
-    private LocalDate birthday;
+    private Date birthday;
 
     /**
      * 创建时间
      */
     @TableField("create_time")
-    private LocalDateTime createTime;
+    private Date create_time;
 
     /**
      * 更新时间
      */
     @TableField("update_time")
-    private LocalDateTime updateTime;
+    private Date update_time;
 
     /**
      * 预约时间
      */
     @TableField("order_time")
-    private LocalDateTime orderTime;
+    private Date order_time;
 
 
     @Override

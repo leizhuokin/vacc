@@ -78,7 +78,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @PutMapping("/updateUser")
+    @RequestMapping("/updateUser")
     @ResponseBody
     public int update(User user){
         System.out.println("执行了 updateUser");
@@ -88,7 +88,6 @@ public class UserController {
         }else {
             return 0;
       }
-
     }
     /**
      * 根据Id删除数据

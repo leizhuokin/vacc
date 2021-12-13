@@ -2,8 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.zut.vacc.mapper.UserMapper">
     <update id="updateUser" parameterType="cn.edu.zut.vacc.po.User">
-       update `user` u set u.number =#{number},u.password=#{password},u.nickname=#{nickname},u.realName=#{realName},u.gender=#{gender},
-                       u.phone=#{phone},u.age=#{age},u.birthday=#{birthday},u.createTime=#{createTime},u.updateTime=#{updateTime},u.orderTime=#{orderTime}
+       update `user` u set u.number =#{number},
+                           u.password=#{password},
+                           u.nickname=#{nickname},
+                           u.real_name=#{real_name},
+                           u.gender=#{gender},
+                           u.phone=#{phone},
+                           u.age=#{age},
+                           u.birthday=#{birthday},
+                           u.create_time=#{create_time},
+                           u.update_time=#{update_time},
+                           u.order_time=#{order_time}
        where uid=#{uid}
     </update>
 
