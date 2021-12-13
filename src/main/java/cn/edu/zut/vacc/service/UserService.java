@@ -24,4 +24,7 @@ public interface UserService extends IService<User> {
     Boolean login(String username, String password);
 
     IPage<User> selectUserAll(Page<User> page);
+
+    int updateUser(User user);
+
 }

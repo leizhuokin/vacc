@@ -78,9 +78,16 @@ public class UserController {
      * @param user
      * @return
      */
-    @PutMapping
-    public Result update(@RequestBody  User user){
-        return userService.updateById(user)?Result.ok("修改成功"):Result.error("修改失败");
+    @PutMapping("/updateUser")
+    @ResponseBody
+    public int update(User user){
+        System.out.println("执行了 updateUser");
+        int i = userService.updateUser(user);
+        if (i >= 1) {
+            return i;
+        }else {
+            return 0;
+      }
 
     }
     /**
@@ -88,10 +95,9 @@ public class UserController {
      * @param id
      * @return
      */
-    @DeleteMapping("/{id}")
-    public Result delete(@PathVariable("id") Integer id){
-        return userService.removeById(id)?Result.ok("删除成功"):Result.error("删除失败");
-
+    @DeleteMapping("/deleteUser")
+    public int delete(Integer id){
+        return userService.getBaseMapper().deleteById(id);
     }
 
     /**

@@ -24,4 +24,6 @@ public interface UserMapper extends BaseMapper<User> {
     User login(String username);
 
     IPage<User> selectUserAll(Page<User> page);
+
+    int updateUser(User user);
 }
