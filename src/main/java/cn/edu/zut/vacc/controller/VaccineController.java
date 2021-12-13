@@ -1,11 +1,11 @@
 package cn.edu.zut.vacc.controller;
 
 
-import cn.edu.zut.vacc.po.UserVaccine;
 import cn.edu.zut.vacc.po.Vaccine;
-import cn.edu.zut.vacc.service.UserVaccineService;
 import cn.edu.zut.vacc.service.VaccineService;
 import cn.edu.zut.vacc.vo.Result;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +38,12 @@ public class VaccineController {
     public Result add(@RequestBody Vaccine vaccine){
         return vaccineService.save(vaccine)?Result.ok("保存成功"):Result.error("保存失败");
 
+    }
+    @PostMapping("/selectVaccineAll")
+    @ResponseBody
+    public IPage<Vaccine> selectVaccineAll(Page<Vaccine> page){
+        IPage<Vaccine> vaccineIPage=vaccineService.selectVaccineAll(page);
+        return vaccineIPage;
     }
 
     /**

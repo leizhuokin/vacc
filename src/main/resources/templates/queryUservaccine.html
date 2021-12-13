@@ -10,15 +10,10 @@
 <body>
 <table class="table table-hover">
     <thead>
-    <th>ID</th>
-    <th>身份证号码</th>
-    <th>密码</th>
-    <th>昵称</th>
-    <th>真实姓名</th>
-    <th>性别</th>
-    <th>手机号</th>
-    <th>年龄</th>
-    <th>预约时间</th>
+    <th>关联ID</th>
+    <th>接种时间</th>
+    <th>接种人员ID</th>
+    <th>疫苗ID</th>
     </thead>
     <tbody id="info">
 
@@ -33,43 +28,38 @@
 </ul>
 <script>
     $(function () {
-        queryUser(1,2)
+        queryUV(1,2)
     });
     var current1 = 1;
     var pages1 = 0;
-    function queryUser(current,size) {
+    function queryUV(current,size) {
         $.ajax({
             type: "post",
-            url: "/user/selectUserAll",
+            url: "/user-vaccine/selectUVAll",
             data: {current: current, size: size},
             dataType: "json",
             success: function (data) {
                 console.log(data);
                 current1 = data.current;
                 $("#info").empty();
-                var user = data.records;
+                var user_vaccine = data.records;
                 //总页数
                 var pages = data.pages;
                 pages1 = data.pages;
                 var str ;
-                for (i in user) {
+                for (i in user_vaccine) {
                     str = "<tr>" +
-                        "<td>" + user[i].uid + "</td>" +
-                        "<td>" + user[i].number + "</td>" +
-                        "<td>" + user[i].password + "</td>" +
-                        "<td>" + user[i].nickname + "</td>" +
-                        "<td>" + user[i].realName + "</td>" +
-                        "<td>" + user[i].gender + "</td>" +
-                        "<td>" + user[i].phone + "</td>" +
-                        "<td>" + user[i].age + "</td>" +
-                        "<td>" + user[i].orderTime + "</td>" +
+                        "<td>" + user_vaccine[i].id + "</td>" +
+                        "<td>" + user_vaccine[i].inoculationTime + "</td>" +
+                        "<td>" + user_vaccine[i].uid + "</td>" +
+                        "<td>" + user_vaccine[i].vid + "</td>" +
                         "</tr>";
                     $("#info").append(str);
                 }
                 $("#pagination").empty();
                 var li ;
                 for (let i = 1; i <= pages; i++) {
-                    li = "<li><button onclick='queryUser(\""+i+"\",2)' class=\"btn btn-info\">"+i+"</button></li>";
+                    li = "<li><button onclick='queryUV(\""+i+"\",2)' class=\"btn btn-info\">"+i+"</button></li>";
                     $("#pagination").append(li);
                 }
             }
@@ -82,7 +72,7 @@
         } else {
             current1 = current1 - 1;
         }
-        queryUser(current1, 2);
+        queryUV(current1, 2);
     }
 
     function xiayiye() {
@@ -91,7 +81,7 @@
         }else {
             current1 = current1+1;
         }
-        queryUser(current1,2);
+        queryUV(current1,2);
     }
 </script>
 </body>

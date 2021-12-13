@@ -6,6 +6,8 @@ import cn.edu.zut.vacc.po.UserVaccine;
 import cn.edu.zut.vacc.service.UserService;
 import cn.edu.zut.vacc.service.UserVaccineService;
 import cn.edu.zut.vacc.vo.Result;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +34,12 @@ public class UserVaccineController {
     @PostMapping("/list")
     public List<UserVaccine> list(){
         return userVaccineService.list();
+    }
+    @PostMapping("/selectUVAll")
+    @ResponseBody
+    public IPage<UserVaccine> selectUVAll(Page<UserVaccine> page){
+        IPage<UserVaccine> userIPage=userVaccineService.selectUVAll(page);
+        return userIPage;
     }
 
     /**

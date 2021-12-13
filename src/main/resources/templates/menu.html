@@ -81,7 +81,7 @@
     <div class="top-head">
         <div id="logo">logo</div>
         <div id="title">疫苗接种信息后台管理系统</div>
-        <div id="per-mes">您好!欢迎使用疫苗接种信息后台管理系统！ <a href="">退出</a> </div>
+        <div id="per-mes">您好!欢迎使用疫苗接种信息后台管理系统！ <a href="/index">退出</a></div>
     </div>
     <div class="left-menu">
         <!-- 侧边栏标签页 -->
@@ -89,7 +89,7 @@
             <!-- 侧边栏选项 -->
             <li role="presentation" class="active">
                 <!-- 选项控制data-target对应的显隐 -->
-                <a href="#" data-toggle="collapse" data-target="#list">学生管理</a>
+                <a href="#" data-toggle="collapse" data-target="#list">用户管理</a>
                 <!-- 隐藏的详细菜单 -->
                 <ul id="list" class="collapse in">
                     <li class="active">
@@ -100,11 +100,23 @@
                     <li><a href="">操作二</a></li>
                 </ul>
             </li>
-            <li role="presentation"><a href="#" data-toggle="collapse" data-target="#list1">Profile</a>
+            <li role="presentation"><a href="#" data-toggle="collapse" data-target="#list1">疫苗管理</a>
                 <ul id="list1" class="collapse in">
                     <li class="active">
-                        <a href="">
-                            操作一
+                        <a href="/queryVaccine" target="myiframe">
+                            查询疫苗信息
+                        </a>
+                    </li>
+                    <li><a href="">
+                        操作二
+                    </a></li>
+                </ul>
+            </li>
+            <li role="presentation"><a href="#" data-toggle="collapse" data-target="#list1">接种信息管理</a>
+                <ul id="list2" class="collapse in">
+                    <li class="active">
+                        <a href="/queryUservaccine" target="myiframe">
+                            查询接种信息
                         </a>
                     </li>
                     <li><a href="">操作二</a></li>

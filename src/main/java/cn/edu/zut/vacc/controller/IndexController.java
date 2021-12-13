@@ -15,4 +15,16 @@ public class IndexController {
     public String queryUser(){
         return "queryUser";
     }
+    @RequestMapping("/index")
+    public String index(){
+        return "index";
+    }
+    @RequestMapping("/queryVaccine")
+    public String queryVaccine(){
+        return "queryVaccine";
+    }
+    @RequestMapping("/queryUservaccine")
+    public String queryUservaccine(){
+        return "queryUservaccine";
+    }
 }

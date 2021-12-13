@@ -2,4 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.zut.vacc.mapper.VaccineMapper">
 
+    <select id="selectVaccineAll" resultType="cn.edu.zut.vacc.po.Vaccine">
+        select * from vaccine
+    </select>
 </mapper>

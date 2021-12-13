@@ -2,6 +2,8 @@ package cn.edu.zut.vacc.mapper;
 
 import cn.edu.zut.vacc.po.UserVaccine;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UserVaccineMapper extends BaseMapper<UserVaccine> {
 
+    IPage<UserVaccine> selectUVAll(Page<UserVaccine> page);
 }
