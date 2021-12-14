@@ -12,13 +12,14 @@
 <form id="queryUserName" class="bs-example bs-example-form" role="form">
     <div class="input-group">
         <span class="input-group-addon">用户名</span>
-        <input type="text" id="number1" name="number" class="form-control">
+        <input type="text" id="number1" name="number" class="form-control" style="width: 100px;float: left">
+        <!-- 查询按钮-->
+        <button class="btn btn-info" type="button" onclick="queryUserName() ">查询</button>
+        <!-- 添加按钮-->
+        <button type="button" onclick="add(user[i].uid ,user[i].number ,user[i].password ,user[i].nickname,user[i].realName ,user[i].gender, user[i].phone , user[i].age , user[i].birthday , user[i].createTime ,user[i].updateTime , user[i].orderTime )"
+                class="btn btn-success" data-toggle="modal" data-target="#addModal" style="position: absolute;top: 0rem;right: 13rem;">添加</button>
+        <button class="btn btn-primary" type="button" onclick="window.location.href='/menu'" style="position: absolute;top: 0rem;right: 3.5rem;">返回</button>
     </div>
-    <!--    查询按钮-->
-    <button class="btn btn-info" type="button" onclick="queryUserName() ">查询</button>
-    <!-- 添加按钮-->
-    <button type="button" onclick="add(user[i].uid ,user[i].number ,user[i].password ,user[i].nickname,user[i].realName ,user[i].gender, user[i].phone , user[i].age , user[i].birthday , user[i].createTime ,user[i].updateTime , user[i].orderTime )"
-            class="btn btn-success" data-toggle="modal" data-target="#addModal">添加</button>
 </form>
 
 <table class="table table-hover">
@@ -332,7 +333,6 @@
             }
         });
     }
-
 
     function add(uid, number, password, nickname, realName, gender, phone, age, birthday, createTime, updateTime, orderTime) {
         $("#uid").val(uid);
