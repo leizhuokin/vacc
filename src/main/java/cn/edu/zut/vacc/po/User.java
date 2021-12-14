@@ -9,8 +9,8 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.*;
 import lombok.experimental.Accessors;
 
 /**
@@ -21,9 +21,9 @@ import lombok.experimental.Accessors;
  * @author 
  * @since 2021-12-05
  */
-@Getter
-@Setter
-@Accessors(chain = true)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @TableName("user")
 public class User extends Model<User> {
     private static final long serialVersionUID = 1L;
@@ -100,11 +100,4 @@ public class User extends Model<User> {
     @TableField("order_time")
     private Date orderTime;
 
-
-    @Override
-    public Serializable pkVal() {
-        return this.uid;
-    }
-
-    public Serializable getId() {return null;}
 }

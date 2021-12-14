@@ -45,20 +45,34 @@ public class UserController {
         IPage<User> userIPage=userService.selectUserAll(page);
         return userIPage;
     }
+
+    /**
+     * 模糊查询
+     * @param page
+     * @param number
+     * @return
+     */
+    @RequestMapping("/queryUserName")
+    @ResponseBody
+    public IPage<User> queryUserName(Page<User> page,String number){
+        IPage<User> userIPage=userService.queryUserName(page,number);
+        return userIPage;
+    }
+
     /**
      * 添加数据
      * @param user
      * @return
      */
-    @PostMapping
-    public Result add(@RequestBody  User user){
-        return userService.save(user)?Result.ok("保存成功"):Result.error("保存失败");
-
-    }
-    @PostMapping("/batch")
-    public Result addBatch(@RequestBody  List<User> user){
-        return userService.saveBatch(user)?Result.ok("保存成功"):Result.error("保存失败");
-
+    @RequestMapping("/addUser")
+    @ResponseBody
+    public int add(User user){
+        int i = userService.add(user);
+        if (i >= 1) {
+            return i;
+        }else {
+            return 0;
+        }
     }
     /**
      * 更新数据
@@ -68,7 +82,6 @@ public class UserController {
     @RequestMapping("/updateUser")
     @ResponseBody
     public int update(User user){
-        System.out.println("执行了 updateUser");
         int i = userService.updateUser(user);
         if (i >= 1) {
             return i;
@@ -78,22 +91,18 @@ public class UserController {
     }
     /**
      * 根据Id删除数据
-     * @param id
+     * @param
      * @return
      */
-    @DeleteMapping("/deleteUser")
-    public int delete(Integer id){
-        return userService.getBaseMapper().deleteById(id);
-    }
-
-    /**
-     * 批量删除
-     * @param ids
-     * @return
-     */
-    @DeleteMapping
-    public Result deleteBatch(@RequestBody List<Integer> ids){
-        return userService.removeByIds(ids)?Result.ok("删除成功"):Result.error("删除失败");
+    @RequestMapping("/deleteUser")
+    @ResponseBody
+    public int deleteUser(User user){
+        int i = userService.deleteUser(user);
+        if (i >=1) {
+            return i;
+        }else {
+            return 0;
+        }
     }
     /**
      * 多表连接查询数据(疫苗接种情况查询)

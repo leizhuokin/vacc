@@ -27,4 +27,9 @@ public interface UserService extends IService<User> {
 
     int updateUser(User user);
 
+    int deleteUser(User user);
+
+    IPage<User> queryUserName(Page<User> page,String number);
+
+    int add(User user);
 }

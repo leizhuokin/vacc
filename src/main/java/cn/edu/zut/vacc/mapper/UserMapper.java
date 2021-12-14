@@ -26,4 +26,10 @@ public interface UserMapper extends BaseMapper<User> {
     IPage<User> selectUserAll(Page<User> page);
 
     int updateUser(User user);
+
+    int deleteUser(User user);
+
+    IPage<User> queryUserName(Page<User> page,String number);
+
+    int addUser(User user);
 }

@@ -43,4 +43,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public int updateUser(User user) {
         return userMapper.updateUser(user);
     }
+
+    @Override
+    public int deleteUser(User user) {
+        return userMapper.deleteUser(user);
+    }
+
+    @Override
+    public IPage<User> queryUserName(Page<User> page,String number) {
+        IPage<User> userIPage = userMapper.queryUserName(page,number);
+        return userIPage;
+    }
+
+    @Override
+    public int add(User user) {
+        return userMapper.addUser(user);
+    }
 }
