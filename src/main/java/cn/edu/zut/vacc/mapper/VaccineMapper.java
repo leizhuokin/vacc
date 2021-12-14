@@ -25,5 +25,5 @@ public interface VaccineMapper extends BaseMapper<Vaccine> {
 
     IPage<Vaccine> queryVaccineName(Page<Vaccine> page, String vno);
 
-    int Vadd(Vaccine vaccine);
+    int addVaccine(Vaccine vaccine);
 }

@@ -20,9 +20,11 @@ public interface VaccineService extends IService<Vaccine> {
     int updateVaccine(Vaccine vaccine);
 
     IPage<Vaccine> selectVaccineAll(Page<Vaccine> page);
+
     int deleteVaccine(Vaccine vaccine);
 
     IPage<Vaccine> queryVaccineName(Page<Vaccine> page, String vno);
 
-    int Vadd(Vaccine vaccine);
+
+    int addVaccine(Vaccine vaccine);
 }

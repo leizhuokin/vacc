@@ -46,7 +46,8 @@ public class VaccineServiceImpl extends ServiceImpl<VaccineMapper, Vaccine> impl
     }
 
     @Override
-    public int Vadd(Vaccine vaccine) {
-        return vaccineMapper.Vadd(vaccine);
+    public int addVaccine(Vaccine vaccine) {
+        return vaccineMapper.addVaccine(vaccine);
     }
+
 }

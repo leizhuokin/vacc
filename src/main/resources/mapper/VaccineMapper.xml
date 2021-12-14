@@ -10,10 +10,10 @@
                     v.exp=#{exp}
          where vid=#{vid}
     </update>
-    <update id="Vadd" parameterType="cn.edu.zut.vacc.po.Vaccine">
+    <insert id="addVaccine" parameterType="cn.edu.zut.vacc.po.Vaccine">
         insert into vaccine
         values (#{vid}, #{vno}, #{vname}, #{ssex}, #{proTime}, #{exp})
-    </update>
+    </insert>
     <delete id="deleteVaccine" parameterType="cn.edu.zut.vacc.po.Vaccine">
         delete
         from vaccine
@@ -24,7 +24,6 @@
         select * from vaccine
     </select>
     <select id="queryVaccineName" resultType="cn.edu.zut.vacc.po.Vaccine">
-        select *
-        from vaccine
+        select * from vaccine where vno = #{vno}
     </select>
 </mapper>

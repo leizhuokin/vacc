@@ -11,15 +11,17 @@
 <!--模糊查询-->
 <form id="queryUserName" class="bs-example bs-example-form" role="form">
     <div class="input-group">
-        <span class="input-group-addon">用户名</span>
-        <input type="text" id="number1" name="number" class="form-control">
+        <span class="input-group-addon">ID</span>
+        <input type="text" id="vno1" name="vno" class="form-control" style="width: 100px;float: left">
+        <!--    查询按钮-->
+        <button class="btn btn-info" type="button" onclick="queryVaccineName() ">查询</button>
+        <!-- 添加按钮-->
+        <button type="button" onclick="add(vaccine[i].vid,vaccine[i].vno,vaccine[i].vname,vaccine[i].ssex,vaccine[i].proTime,vaccine[i].exp )"
+                class="btn btn-success" data-toggle="modal" data-target="#addModal" style="position: absolute;top: 0rem;right: 27.5rem;">添加</button>
+        <!-- 返回按钮-->
+        <button class="btn btn-primary" type="button" onclick="window.location.href='/menu'" style="position: absolute;top: 0rem;right: 10.5rem;">返回</button>
     </div>
-    <!--    查询按钮-->
-    <button class="btn btn-info" type="button" onclick="queryUserName() ">查询</button>
-    <!-- 添加按钮-->
-    <button type="button" onclick="add(user[i].uid ,user[i].number ,user[i].password ,user[i].nickname,user[i].realName ,user[i].gender, user[i].phone , user[i].age , user[i].birthday , user[i].createTime ,user[i].updateTime , user[i].orderTime )"
-            class="btn btn-success" data-toggle="modal" data-target="#addModal">添加</button>
-</form>
+    </form>
 <table class="table table-hover">
     <thead>
     <th>ID</th>
@@ -40,7 +42,7 @@
     </div>
     <li><button onclick="xiayiye()" class="btn btn-info">&raquo;</button></li>
 </ul>
-<!-- 模态框（Modal） -->
+<!-- 更新模态框 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -120,73 +122,45 @@
             <div class="modal-body">
                 <form id="add">
                     <div class="input-group">
-                        <span class="input-group-addon">ID</span>
-                        <input type="text" id="uid1" name="uid" class="form-control">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">身份证号码</span>
-                        <input type="text" id="number2" name="number" class="form-control">
+                        <span class="input-group-addon">VID</span>
+                        <input type="text" id="uid1" name="vid" class="form-control">
                     </div>
                     <br>
                     <div class="input-group">
-                        <span class="input-group-addon">密  码</span>
-                        <input type="text" id="password1" name="password" class="form-control">
+                        <span class="input-group-addon">疫苗编号</span>
+                        <input type="text" id="vno2" name="vno" class="form-control">
                     </div>
                     <br>
                     <div class="input-group">
-                        <span class="input-group-addon">昵称</span>
-                        <input type="text" id="nickname1" name="nickname" class="form-control">
+                        <span class="input-group-addon">疫苗名称</span>
+                        <input type="text" id="vname1" name="vname" class="form-control" >
                     </div>
                     <br>
                     <div class="input-group">
-                        <span class="input-group-addon">真实姓名</span>
-                        <input type="text" id="realName1" name="realName" class="form-control">
+                        <span class="input-group-addon">疫苗类别</span>
+                        <input type="text" id="ssex1" name="ssex" class="form-control" >
                     </div>
                     <br>
                     <div class="input-group">
-                        <span class="input-group-addon">性别</span>
-                        <input type="text" id="gender1" name="gender" class="form-control">
+                        <span class="input-group-addon">生产日期</span>
+                        <input type="text" id="proTime1" name="proTime" class="form-control" >
                     </div>
                     <br>
                     <div class="input-group">
-                        <span class="input-group-addon">手机号</span>
-                        <input type="text" id="phone1" name="phone" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">年龄</span>
-                        <input type="text" id="age1" name="age" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">出生日期</span>
-                        <input type="text" id="birthday1" name="birthday" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">创建日期</span>
-                        <input type="text" id="createTime1" name="createTime" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">更新日期</span>
-                        <input type="text" id="updateTime1" name="updateTime" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">预约时间</span>
-                        <input type="text" id="orderTime1" name="orderTime" class="form-control">
+                        <span class="input-group-addon">有效期</span>
+                        <input type="text" id="exp1" name="exp" class="form-control" >
                     </div>
                     <br>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" onclick="addUser()" class="btn btn-primary">保存添加</button>
+                <button type="button" onclick="addVaccine()" class="btn btn-primary">保存添加</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+
 
 <script>
     $(function () {
@@ -218,9 +192,8 @@
                         "<td>" + vaccine[i].proTime + "</td>" +
                         "<td>" + vaccine[i].exp + "</td>" +
                         "<td><button onclick=" +
-                        "'update(" + "" +
-                        "\"" + vaccine[i].vid + "\",\"" + vaccine[i].vno + "\",\"" + vaccine[i].vname + "\",\"" + vaccine[i].ssex + "\",\"" + vaccine[i].proTime + "\",\"" + vaccine[i].exp + "\")' class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#myModal\">修改</button></td>" +
-                        "<td><button type='button'  data-toggle=\"modal\" data-target=\"#exampleModal\" class=\"btn btn-danger\"  onclick='delID(\""+vaccine[i].id+"\")'>删除</button></td>" +
+                        "'update(" + "\"" + vaccine[i].vid + "\",\"" + vaccine[i].vno + "\",\"" + vaccine[i].vname + "\",\"" + vaccine[i].ssex + "\",\"" + vaccine[i].proTime + "\",\"" + vaccine[i].exp + "\")' class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#myModal\">修改</button></td>" +
+                        "<td><button type='button'  data-toggle=\"modal\" data-target=\"#exampleModal\" class=\"btn btn-danger\"  onclick='delID(\""+vaccine[i].vid+"\")'>删除</button></td>" +
                         "</tr>";
                     $("#info").append(str);
                 }
@@ -242,7 +215,6 @@
         }
         queryVaccine(current1, 2);
     }
-
     function xiayiye() {
         if (current1 >= pages1){
             current1 = pages1;
@@ -251,6 +223,7 @@
         }
         queryVaccine(current1,2);
     }
+
     function update(vid, vno, vname,ssex,proTime,exp) {
         $("#vid").val(vid);
         $("#vno").val(vno);
@@ -259,11 +232,10 @@
         $("#proTime").val(proTime);
         $("#exp").val(exp);
     }
-
     function updateVaccine() {
         $.ajax({
             type: "post",
-            url: "/vaccine/updateUser",
+            url: "/vaccine/updateVaccine",
             data: $("#update").serialize(),
             dataType: "json",
             success: function (data) {
@@ -275,22 +247,86 @@
         });
     }
 
-    function delID(uid) {
-        $("#delID").val(uid);
+    function add(vid, vno, vname,ssex,proTime,exp) {
+        $("#vid").val(vid);
+        $("#vno").val(vno);
+        $("#vname").val(vname);
+        $("#ssex").val(ssex);
+        $("#proTime").val(proTime);
+        $("#exp").val(exp);
     }
-    function del() {
+    function addVaccine() {
         $.ajax({
             type: "post",
-            url: "/user/deleteUser",
-            data:{uid:$("#delID").val()},
-            dataType:"json",
+            url: "/vaccine/addVaccine",
+            data: $("#add").serialize(),
+            dataType: "json",
             success: function (data) {
-                if (data>0){
-                    window.location.href = "/queryUser";
+                if (data >= 1) {
+                    alert("保存成功");
+                    window.location.href = "/queryVaccine";
                 }
             }
         });
     }
+
+    function delID(vid) {
+        $("#delID").val(vid);
+    }
+    function del() {
+        $.ajax({
+            type: "post",
+            url: "/vaccine/deleteVaccine",
+            data:{vid:$("#delID").val()},
+            dataType:"json",
+            success: function (data) {
+                if (data>0){
+                    window.location.href = "/queryVaccine";
+                }
+            }
+        });
+    }
+
+    function queryVaccineName() {
+        var vno = $("#vno1").val();
+        $.ajax({
+            type: "post",
+            url: "/vaccine/queryVaccineName",
+            data: {vno: vno,current: 1, size: 2},
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                current1 = data.current;
+                $("#info").empty();
+                var vaccine = data.records;
+                //总页数
+                var pages = data.pages;
+                pages1 = data.pages;
+                var str;
+                for (i in vaccine) {
+                    str = "<tr>" +
+                        "<td>" + vaccine[i].vid + "</td>" +
+                        "<td>" + vaccine[i].vno + "</td>" +
+                        "<td>" + vaccine[i].vname + "</td>" +
+                        "<td>" + vaccine[i].ssex + "</td>" +
+                        "<td>" + vaccine[i].proTime + "</td>" +
+                        "<td>" + vaccine[i].exp + "</td>" +
+                        "<td><button onclick=" +
+                        "'update(" + "\"" + vaccine[i].vid + "\",\"" + vaccine[i].vno + "\",\"" + vaccine[i].vname + "\",\"" + vaccine[i].ssex + "\",\"" + vaccine[i].proTime + "\",\"" + vaccine[i].exp + "\")' class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#myModal\">修改</button></td>" +
+                        "<td><button type='button'  data-toggle=\"modal\" data-target=\"#exampleModal\" class=\"btn btn-danger\"  onclick='delID(\""+vaccine[i].vid+"\")'>删除</button></td>" +
+                        "</tr>";
+                    $("#info").append(str);
+                }
+                $("#pagination").empty();
+                var li ;
+                for (let i = 1; i <= pages; i++) {
+                    li = "<li><button onclick='queryVaccine(\""+i+"\",2)' class=\"btn btn-info\">"+i+"</button></li>";
+                    $("#pagination").append(li);
+                }
+            }
+        });
+    }
+
 </script>
 </body>
 </html>

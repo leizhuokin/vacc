@@ -25,10 +25,6 @@ import java.util.List;
 public class VaccineController {
     @Autowired
     VaccineService vaccineService;
-    @PostMapping("/list")
-    public List<Vaccine> list(){
-        return vaccineService.list();
-    }
 
     /**
      * 模糊查询
@@ -36,9 +32,9 @@ public class VaccineController {
      * @param vno
      * @return
      */
-    @RequestMapping("/queryUserName")
+    @RequestMapping("/queryVaccineName")
     @ResponseBody
-    public IPage<Vaccine> queryUserName(Page<Vaccine> page,String vno){
+    public IPage<Vaccine> queryVaccineName(Page<Vaccine> page,String vno){
         IPage<Vaccine> userIPage=vaccineService.queryVaccineName(page,vno);
         return userIPage;
     }
@@ -47,10 +43,10 @@ public class VaccineController {
      * @param Vaccine
      * @return
      */
-    @RequestMapping("/addUser")
+    @RequestMapping("/addVaccine")
     @ResponseBody
-    public int Vadd(Vaccine Vaccine){
-        int i = vaccineService.Vadd(Vaccine);
+    public int addVaccine(Vaccine Vaccine){
+        int i = vaccineService.addVaccine(Vaccine);
         if (i >= 1) {
             return i;
         }else {
@@ -69,7 +65,7 @@ public class VaccineController {
      * @param vaccine
      * @return
      */
-    @RequestMapping("/updateUser")
+    @RequestMapping("/updateVaccine")
     @ResponseBody
     public int updateVaccine(Vaccine vaccine){
         System.out.println("执行了 updateUser");
@@ -86,9 +82,9 @@ public class VaccineController {
      * @param
      * @return
      */
-    @RequestMapping("/deleteUser")
+    @RequestMapping("/deleteVaccine")
     @ResponseBody
-    public int deleteUser(Vaccine Vaccine){
+    public int deleteVaccine(Vaccine Vaccine){
         int i = vaccineService.deleteVaccine(Vaccine);
         if (i >=1) {
             return i;
@@ -96,20 +92,5 @@ public class VaccineController {
             return 0;
         }
     }
-    @PostMapping("/batch")
-    public Result addBatch(@RequestBody  List<Vaccine> vaccine){
-        return vaccineService.saveBatch(vaccine)?Result.ok("保存成功"):Result.error("保存失败");
 
-    }
-
-    /**
-     * 批量删除
-     * @param ids
-     * @return
-     */
-    @DeleteMapping
-    public Result deleteBatch(@RequestBody List<Integer> ids){
-        return vaccineService.removeByIds(ids)?Result.ok("删除成功"):Result.error("删除失败");
-
-    }
 }

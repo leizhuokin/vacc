@@ -302,9 +302,6 @@
         });
     }
 
-    function
-
-
     update(uid, number, password, nickname, realName, gender, phone, age, birthday, createTime, updateTime, orderTime) {
         $("#uid").val(uid);
         $("#number").val(number);
@@ -385,7 +382,6 @@
         var number = $("#number1").val();
         $.ajax({
             type: "post",
-
             url: "/user/queryUserName",
             data: {number: number, current: 1, size: 2},
             dataType: "json",
