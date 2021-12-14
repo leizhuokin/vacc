@@ -12,13 +12,15 @@
 <form id="queryUserName" class="bs-example bs-example-form" role="form">
     <div class="input-group">
         <span class="input-group-addon">ID</span>
-        <input type="text" id="id2" name="id" class="form-control">
+        <input type="text" id="id2" name="id" class="form-control" style="width: 100px;float: left">
+        <!--    查询按钮-->
+        <button class="btn btn-info" type="button" onclick="queryUserName()">查询</button>
+        <!-- 添加按钮-->
+        <button type="button" onclick="add(user_vaccine[i].id ,user_vaccine[i].inoculationTime ,user_vaccine[i].uid ,user_vaccine[i].vid)"
+                class="btn btn-success" data-toggle="modal" data-target="#addModal" style="position: absolute;top: 0rem;right: 37.5rem;">添加</button>
+        <!-- 返回按钮-->
+        <button class="btn btn-primary" type="button" onclick="window.location.href='/menu'" style="position: absolute;top: 0rem;right: 15.5rem;">返回</button>
     </div>
-    <!--    查询按钮-->
-    <button class="btn btn-info" type="button" onclick="queryUserName() ">查询</button>
-    <!-- 添加按钮-->
-    <button type="button" onclick="add(user_vaccine[i].id ,user_vaccine[i].inoculationTime ,user_vaccine[i].uid ,user_vaccine[i].vid)"
-            class="btn btn-success" data-toggle="modal" data-target="#addModal">添加</button>
 </form>
 <table class="table table-hover">
     <thead>
@@ -44,7 +46,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">修改用户</h4>
+                <h4 class="modal-title" id="myModalLabel">修改信息</h4>
             </div>
             <div class="modal-body">
                 <form id="update">
@@ -109,12 +111,13 @@
                 <form id="add">
                     <div class="input-group">
                         <span class="input-group-addon">ID</span>
-                        <input type="hidden" name="id" id="id1">
+                        <input type="text" id="id1" name="id" class="form-control">
                     </div>
+                    <br>
                         <div class="input-group">
                             <span class="input-group-addon">接种时间</span>
                             <input type="text" id="inoculationTime1" name="inoculationTime" class="form-control" >
-                        </div>e
+                        </div>
                         <br>
                         <div class="input-group">
                             <span class="input-group-addon">接种人员ID</span>
@@ -234,7 +237,7 @@
             success: function (data) {
                 if (data >= 1) {
                     alert("保存成功");
-                    window.location.href = "/queryUser";
+                    window.location.href = "/queryUservaccine";
                 }
             }
         });
@@ -251,7 +254,7 @@
             dataType:"json",
             success: function (data) {
                 if (data>0){
-                    window.location.href = "/queryUser";
+                    window.location.href = "/queryUservaccine";
                 }
             }
         });
@@ -267,13 +270,12 @@
                 console.log(data);
                 current1 = data.current;
                 $("#info").empty();
-                var usqer = data.records;
+                var user_vaccine = data.records;
                 //总页数
                 var pages = data.pages;
                 pages1 = data.pages;
-                var str;
-                for (i in
-                    ) {
+                var str ;
+                for (i in user_vaccine) {
                     str = "<tr>" +
                         "<td>" + user_vaccine[i].id + "</td>" +
                         "<td>" + user_vaccine[i].inoculationTime + "</td>" +

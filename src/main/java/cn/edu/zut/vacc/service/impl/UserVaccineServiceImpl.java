@@ -36,8 +36,8 @@ public class UserVaccineServiceImpl extends ServiceImpl<UserVaccineMapper, UserV
         return uservaccineMapper.deleteUVser(userVaccine);
     }
     @Override
-    public IPage<UserVaccine> queryUVserName(Page<UserVaccine> page,String inoculationTime) {
-        IPage<UserVaccine> userIPage = uservaccineMapper.queryUVserName(page,inoculationTime);
+    public IPage<UserVaccine> queryUVserName(Page<UserVaccine> page,Integer id) {
+        IPage<UserVaccine> userIPage = uservaccineMapper.queryUVserName(page,id);
         return userIPage;
     }
     @Override

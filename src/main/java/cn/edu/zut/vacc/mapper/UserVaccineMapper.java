@@ -22,7 +22,7 @@ public interface UserVaccineMapper extends BaseMapper<UserVaccine> {
 
     int UVadd(UserVaccine userVaccine);
 
-    IPage<UserVaccine> queryUVserName(Page<UserVaccine> page, String inoculationTime);
+    IPage<UserVaccine> queryUVserName(Page<UserVaccine> page, Integer id);
 
     int deleteUVser(UserVaccine userVaccine);
 }

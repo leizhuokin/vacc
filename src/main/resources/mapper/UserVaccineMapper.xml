@@ -23,5 +23,6 @@
     <select id="queryUVserName" resultType="cn.edu.zut.vacc.po.UserVaccine">
         select *
         from user_vaccine
+        where id = #{id}
     </select>
 </mapper>

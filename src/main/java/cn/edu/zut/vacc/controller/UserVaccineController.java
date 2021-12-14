@@ -44,13 +44,13 @@ public class UserVaccineController {
     /**
      * 模糊查询
      * @param page
-     * @param inoculationTime
+     * @param id
      * @return
      */
     @RequestMapping("/queryUserName")
     @ResponseBody
-    public IPage<UserVaccine> queryUserName(Page<UserVaccine> page,String inoculationTime){
-        IPage<UserVaccine> userIPage=userVaccineService.queryUVserName(page,inoculationTime);
+    public IPage<UserVaccine> queryUserName(Page<UserVaccine> page,Integer id){
+        IPage<UserVaccine> userIPage=userVaccineService.queryUVserName(page,id);
         return userIPage;
     }
     /**
