@@ -2,8 +2,6 @@ package cn.edu.zut.vacc.controller;
 
 import cn.edu.zut.vacc.po.User;
 import cn.edu.zut.vacc.service.UserService;
-import cn.edu.zut.vacc.vo.Result;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +28,7 @@ public class UserController {
             mav.addObject("msg","登录成功");
             mav.addObject("users",users);
         }else{
-            mav.setViewName("index");
+            mav.setViewName("index1");
             mav.addObject("msg","用户名或密码错误");
         }
         return mav;
