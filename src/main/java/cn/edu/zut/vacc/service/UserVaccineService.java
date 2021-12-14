@@ -18,4 +18,10 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserVaccineService extends IService<UserVaccine> {
     IPage<UserVaccine> selectUVAll(Page<UserVaccine> page);
+    int updateUVser(UserVaccine userVaccine);
+    IPage<UserVaccine> queryUVserName(Page<UserVaccine> page, String inoculationTime);
+
+    int UVadd(UserVaccine userVaccine);
+
+    int deleteUVser(UserVaccine userVaccine);
 }

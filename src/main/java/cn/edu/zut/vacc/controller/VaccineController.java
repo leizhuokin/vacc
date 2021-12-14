@@ -1,6 +1,7 @@
 package cn.edu.zut.vacc.controller;
 
 
+import cn.edu.zut.vacc.po.UserVaccine;
 import cn.edu.zut.vacc.po.Vaccine;
 import cn.edu.zut.vacc.service.VaccineService;
 import cn.edu.zut.vacc.vo.Result;
@@ -30,14 +31,31 @@ public class VaccineController {
     }
 
     /**
-     * 添加数据
-     * @param vaccine
+     * 模糊查询
+     * @param page
+     * @param vno
      * @return
      */
-    @PostMapping
-    public Result add(@RequestBody Vaccine vaccine){
-        return vaccineService.save(vaccine)?Result.ok("保存成功"):Result.error("保存失败");
-
+    @RequestMapping("/queryUserName")
+    @ResponseBody
+    public IPage<Vaccine> queryUserName(Page<Vaccine> page,String vno){
+        IPage<Vaccine> userIPage=vaccineService.queryVaccineName(page,vno);
+        return userIPage;
+    }
+    /**
+     * 添加数据
+     * @param Vaccine
+     * @return
+     */
+    @RequestMapping("/addUser")
+    @ResponseBody
+    public int Vadd(Vaccine Vaccine){
+        int i = vaccineService.Vadd(Vaccine);
+        if (i >= 1) {
+            return i;
+        }else {
+            return 0;
+        }
     }
     @PostMapping("/selectVaccineAll")
     @ResponseBody
@@ -51,21 +69,32 @@ public class VaccineController {
      * @param vaccine
      * @return
      */
-    @PutMapping
-    public Result update(@RequestBody  Vaccine vaccine){
-        return vaccineService.updateById(vaccine)?Result.ok("修改成功"):Result.error("修改失败");
-
+    @RequestMapping("/updateUser")
+    @ResponseBody
+    public int updateVaccine(Vaccine vaccine){
+        System.out.println("执行了 updateUser");
+        int i = vaccineService.updateVaccine(vaccine);
+        if (i >= 1) {
+            return i;
+        }else {
+            return 0;
+        }
     }
 
     /**
      * 根据id删除数据
-     * @param id
+     * @param
      * @return
      */
-    @DeleteMapping("/{id}")
-    public Result delete(@PathVariable("id") Integer id){
-        return vaccineService.removeById(id)?Result.ok("删除成功"):Result.error("删除失败");
-
+    @RequestMapping("/deleteUser")
+    @ResponseBody
+    public int deleteUser(Vaccine Vaccine){
+        int i = vaccineService.deleteVaccine(Vaccine);
+        if (i >=1) {
+            return i;
+        }else {
+            return 0;
+        }
     }
     @PostMapping("/batch")
     public Result addBatch(@RequestBody  List<Vaccine> vaccine){

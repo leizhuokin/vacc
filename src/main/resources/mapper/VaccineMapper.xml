@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.zut.vacc.mapper.VaccineMapper">
+    <update id="updateVaccine" parameterType="cn.edu.zut.vacc.po.Vaccine">
+        update `vaccine` v set
+                    v.vno=#{vno},
+                    v.vname=#{vname},
+                    v.ssex=#{ssex},
+                    v.pro_time=#{proTime},
+                    v.exp=#{exp}
+         where vid=#{vid}
+    </update>
+    <update id="Vadd" parameterType="cn.edu.zut.vacc.po.Vaccine">
+        insert into vaccine
+        values (#{vid}, #{vno}, #{vname}, #{ssex}, #{proTime}, #{exp})
+    </update>
+    <delete id="deleteVaccine" parameterType="cn.edu.zut.vacc.po.Vaccine">
+        delete
+        from vaccine
+        where vid = #{vid}
+    </delete>
 
     <select id="selectVaccineAll" resultType="cn.edu.zut.vacc.po.Vaccine">
         select * from vaccine
+    </select>
+    <select id="queryVaccineName" resultType="cn.edu.zut.vacc.po.Vaccine">
+        select *
+        from vaccine
     </select>
 </mapper>

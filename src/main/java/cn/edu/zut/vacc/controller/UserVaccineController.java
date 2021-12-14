@@ -42,14 +42,31 @@ public class UserVaccineController {
         return userIPage;
     }
     /**
+     * 模糊查询
+     * @param page
+     * @param inoculationTime
+     * @return
+     */
+    @RequestMapping("/queryUserName")
+    @ResponseBody
+    public IPage<UserVaccine> queryUserName(Page<UserVaccine> page,String inoculationTime){
+        IPage<UserVaccine> userIPage=userVaccineService.queryUVserName(page,inoculationTime);
+        return userIPage;
+    }
+    /**
      * 添加数据
      * @param userVaccine
      * @return
      */
-    @PostMapping
-    public Result add(@RequestBody UserVaccine userVaccine){
-        return userVaccineService.save(userVaccine)?Result.ok("保存成功"):Result.error("保存失败");
-
+    @RequestMapping("/addUser")
+    @ResponseBody
+    public int UVadd(UserVaccine userVaccine){
+        int i = userVaccineService.UVadd(userVaccine);
+        if (i >= 1) {
+            return i;
+        }else {
+            return 0;
+        }
     }
 
     /**
@@ -57,21 +74,32 @@ public class UserVaccineController {
      * @param userVaccine
      * @return
      */
-    @PutMapping
-    public Result update(@RequestBody  UserVaccine userVaccine){
-        return userVaccineService.updateById(userVaccine)?Result.ok("修改成功"):Result.error("修改失败");
-
+    @RequestMapping("/updateUser")
+    @ResponseBody
+    public int updateUVser(UserVaccine userVaccine){
+        System.out.println("执行了 updateUser");
+        int i = userVaccineService.updateUVser(userVaccine);
+        if (i >= 1) {
+            return i;
+        }else {
+            return 0;
+        }
     }
 
     /**
      * 根据id删除数据
-     * @param id
+     * @param
      * @return
      */
-    @DeleteMapping("/{id}")
-    public Result delete(@PathVariable("id") Integer id){
-        return userVaccineService.removeById(id)?Result.ok("删除成功"):Result.error("删除失败");
-
+    @RequestMapping("/deleteUser")
+    @ResponseBody
+    public int deleteUser(UserVaccine userVaccine){
+        int i = userVaccineService.deleteUVser(userVaccine);
+        if (i >=1) {
+            return i;
+        }else {
+            return 0;
+        }
     }
 
     @PostMapping("/batch")

@@ -18,4 +18,12 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface VaccineMapper extends BaseMapper<Vaccine> {
     IPage<Vaccine> selectVaccineAll(Page<Vaccine> page);
+
+    int updateVaccine(Vaccine vaccine);
+
+    int deleteVaccine(Vaccine vaccine);
+
+    IPage<Vaccine> queryVaccineName(Page<Vaccine> page, String vno);
+
+    int Vadd(Vaccine vaccine);
 }

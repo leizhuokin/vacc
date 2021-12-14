@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
@@ -55,7 +56,7 @@ public class Vaccine extends Model<Vaccine> {
      * 生产日期
      */
     @TableField("pro_time")
-    private LocalDateTime proTime;
+    private Date proTime;
 
     /**
      * 有效期

@@ -8,6 +8,18 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<!--模糊查询-->
+<form id="queryUserName" class="bs-example bs-example-form" role="form">
+    <div class="input-group">
+        <span class="input-group-addon">ID</span>
+        <input type="text" id="id2" name="id" class="form-control">
+    </div>
+    <!--    查询按钮-->
+    <button class="btn btn-info" type="button" onclick="queryUserName() ">查询</button>
+    <!-- 添加按钮-->
+    <button type="button" onclick="add(user_vaccine[i].id ,user_vaccine[i].inoculationTime ,user_vaccine[i].uid ,user_vaccine[i].vid)"
+            class="btn btn-success" data-toggle="modal" data-target="#addModal">添加</button>
+</form>
 <table class="table table-hover">
     <thead>
     <th>关联ID</th>
@@ -26,7 +38,122 @@
     </div>
     <li><button onclick="xiayiye()" class="btn btn-info">&raquo;</button></li>
 </ul>
+<!-- 更改模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">修改用户</h4>
+            </div>
+            <div class="modal-body">
+                <form id="update">
+                    <input type="hidden" name="id" id="id">
+                    <div class="input-group">
+                        <span class="input-group-addon">接种时间</span>
+                        <input type="text" id="inoculationTime" name="inoculationTime" class="form-control" >
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">接种人员ID</span>
+                        <input type="text" id="uid" name="uid" class="form-control" >
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">疫苗ID</span>
+                        <input type="text" id="vid" name="vid" class="form-control" >
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" onclick="updateUVser()" class="btn btn-primary">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- 删除模态框（Modal） -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <input type="hidden" id="delID">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">确认框</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">确定要删除联系人？</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                <button type="button" class="btn btn-primary" onclick="del()">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 添加模态框（Modal） -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="addModalLabel">添加用户</h4>
+            </div>
+            <div class="modal-body">
+                <form id="add">
+                    <div class="input-group">
+                        <span class="input-group-addon">ID</span>
+                        <input type="hidden" name="id" id="id1">
+                    </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">接种时间</span>
+                            <input type="text" id="inoculationTime1" name="inoculationTime" class="form-control" >
+                        </div>e
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">接种人员ID</span>
+                            <input type="text" id="uid1" name="uid" class="form-control" >
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">疫苗ID</span>
+                            <input type="text" id="vid1" name="vid" class="form-control" >
+                        </div>
+                        <br>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" onclick="addUser()" class="btn btn-primary">保存添加</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
 <script>
+    function shangyiye() {
+    console.log(current1 + "---------------");
+    if (current1 <= 1) {
+        current1 = 1;
+    } else {
+        current1 = current1 - 1;
+    }
+    queryUV(current1, 2);
+}
+    function xiayiye() {
+    if (current1 >= pages1){
+        current1 = pages1;
+    }else {
+        current1 = current1+1;
+    }
+    queryUV(current1,2);
+}
     $(function () {
         queryUV(1,2)
     });
@@ -53,6 +180,9 @@
                         "<td>" + user_vaccine[i].inoculationTime + "</td>" +
                         "<td>" + user_vaccine[i].uid + "</td>" +
                         "<td>" + user_vaccine[i].vid + "</td>" +
+                        "<td><button onclick=" +
+                        "'update(" + "\"" + user_vaccine[i].id + "\",\"" + user_vaccine[i].inoculationTime + "\",\"" + user_vaccine[i].uid + "\",\"" + user_vaccine[i].vid + "\")' class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#myModal\">修改</button></td>" +
+                        "<td><button type='button'  data-toggle=\"modal\" data-target=\"#exampleModal\" class=\"btn btn-danger\"  onclick='delID(\""+user_vaccine[i].id+"\")'>删除</button></td>" +
                         "</tr>";
                     $("#info").append(str);
                 }
@@ -65,23 +195,104 @@
             }
         });
     }
-    function shangyiye() {
-        console.log(current1 + "---------------");
-        if (current1 <= 1) {
-            current1 = 1;
-        } else {
-            current1 = current1 - 1;
-        }
-        queryUV(current1, 2);
+
+
+    function update(id, inoculationTime, uid,vid)
+    {
+        $("#id").val(id);
+        $("#inoculationTime").val(inoculationTime);
+        $("#uid").val(uid);
+        $("#vid").val(vid);
+    }
+    function updateUVser() {
+        $.ajax({
+            type: "post",
+            url: "/user-vaccine/updateUser",
+            data: $("#update").serialize(),
+            dataType: "json",
+            success: function (data) {
+                if (data >= 1) {
+                    alert("修改成功");
+                    window.location.href = "/queryUservaccine";
+                }
+            }
+        });
     }
 
-    function xiayiye() {
-        if (current1 >= pages1){
-            current1 = pages1;
-        }else {
-            current1 = current1+1;
-        }
-        queryUV(current1,2);
+    function add(id, inoculationTime, uid,vid) {
+        $("#id").val(id);
+        $("#inoculationTime").val(inoculationTime);
+        $("#uid").val(uid);
+        $("#vid").val(vid);
+    }
+    function addUser() {
+        $.ajax({
+            type: "post",
+            url: "/user-vaccine/addUser",
+            data: $("#add").serialize(),
+            dataType: "json",
+            success: function (data) {
+                if (data >= 1) {
+                    alert("保存成功");
+                    window.location.href = "/queryUser";
+                }
+            }
+        });
+    }
+
+    function delID(id) {
+        $("#delID").val(id);
+    }
+    function del() {
+        $.ajax({
+            type: "post",
+            url: "/user-vaccine/deleteUser",
+            data:{id:$("#delID").val()},
+            dataType:"json",
+            success: function (data) {
+                if (data>0){
+                    window.location.href = "/queryUser";
+                }
+            }
+        });
+    }
+    function queryUserName() {
+        var number = $("#id2").val();
+        $.ajax({
+            type: "post",
+            url: "/user-vaccine/queryUserName",
+            data: {id: number, current: 1, size: 2},
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                current1 = data.current;
+                $("#info").empty();
+                var usqer = data.records;
+                //总页数
+                var pages = data.pages;
+                pages1 = data.pages;
+                var str;
+                for (i in
+                    ) {
+                    str = "<tr>" +
+                        "<td>" + user_vaccine[i].id + "</td>" +
+                        "<td>" + user_vaccine[i].inoculationTime + "</td>" +
+                        "<td>" + user_vaccine[i].uid + "</td>" +
+                        "<td>" + user_vaccine[i].vid + "</td>" +
+                        "<td><button onclick=" +
+                        "'update(" + "\"" + user_vaccine[i].id + "\",\"" + user_vaccine[i].inoculationTime + "\",\"" + user_vaccine[i].uid + "\",\"" + user_vaccine[i].vid + "\")' class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#myModal\">修改</button></td>" +
+                        "<td><button type='button'  data-toggle=\"modal\" data-target=\"#exampleModal\" class=\"btn btn-danger\"  onclick='delID(\""+user_vaccine[i].id+"\")'>删除</button></td>" +
+                        "</tr>";
+                    $("#info").append(str);
+                }
+                $("#pagination").empty();
+                var li ;
+                for (let i = 1; i <= pages; i++) {
+                    li = "<li><button onclick='queryUV(\""+i+"\",2)' class=\"btn btn-info\">"+i+"</button></li>";
+                    $("#pagination").append(li);
+                }
+            }
+        });
     }
 </script>
 </body>
