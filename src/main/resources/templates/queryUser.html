@@ -1,237 +1,249 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--    <link rel="stylesheet" href="css/style5.css">-->
 </head>
-<body>
-<!--模糊查询-->
-<form id="queryUserName" class="bs-example bs-example-form" role="form">
-    <div class="input-group">
-        <span class="input-group-addon">用户名</span>
-        <input type="text" id="number1" name="number" class="form-control" style="width: 100px;float: left">
-        <!-- 查询按钮-->
-        <button class="btn btn-info" type="button" onclick="queryUserName() ">查询</button>
-        <!-- 添加按钮-->
-        <button type="button" onclick="add(user[i].uid ,user[i].number ,user[i].password ,user[i].nickname,user[i].realName ,user[i].gender, user[i].phone , user[i].age , user[i].birthday , user[i].createTime ,user[i].updateTime , user[i].orderTime )"
-                class="btn btn-success" data-toggle="modal" data-target="#addModal" style="position: absolute;top: 0rem;right: 13rem;">添加</button>
-        <button class="btn btn-primary" type="button" onclick="window.location.href='/menu'" style="position: absolute;top: 0rem;right: 3.5rem;">返回</button>
+<body style="background-image: url('/img/beijing.gif');background-repeat: no-repeat;background-size: 100%;">
+
+
+
+<!--<div style="position:absolute; z-index:-1"  >-->
+<!--    <canvas class="main-canvas" id="c"></canvas>-->
+<!--</div>-->
+
+<!--<script src='js/TweenMax.min.js'></script>-->
+<!--<script  src="js/index.js"></script>-->
+<div style="color: #fbfdfd">
+    <!--模糊查询-->
+    <form id="queryUserName" class="bs-example bs-example-form"  role="form">
+        <div class="input-group">
+            <span class="input-group-addon">用户名</span>
+            <input type="text" id="number1" name="number" class="form-control" style="width: 100px;float: left">
+            <!-- 查询按钮-->
+            <button class="btn btn-info" type="button" onclick="queryUserName() ">查询</button>
+            <!-- 添加按钮-->
+            <button type="button" onclick="add(user[i].uid ,user[i].number ,user[i].password ,user[i].nickname,user[i].realName ,user[i].gender, user[i].phone , user[i].age , user[i].birthday , user[i].createTime ,user[i].updateTime , user[i].orderTime )"
+                    class="btn btn-success" data-toggle="modal" data-target="#addModal" style="position: absolute;top: 0rem;right: 13rem;">添加</button>
+            <button class="btn btn-primary" type="button" onclick="window.location.href='/menu'" style="position: absolute;top: 0rem;right: 3.5rem;">返回</button>
+        </div>
+    </form>
+    <table class="table table-hover">
+        <thead>
+        <th>ID</th>
+        <th>身份证号码</th>
+        <th>密码</th>
+        <th>昵称</th>
+        <th>真实姓名</th>
+        <th>性别</th>
+        <th>手机号</th>
+        <th>年龄</th>
+        <th>出生日期</th>
+        <th>创建日期</th>
+        <th>更新日期</th>
+        <th>预约时间</th>
+        <th>操作</th>
+        </thead>
+        <tbody id="info">
+
+        </tbody>
+    </table>
+    <ul class="pagination">
+        <li>
+            <button onclick="shangyiye()" class="btn btn-info">&laquo;</button>
+        </li>
+        <div class="pagination" id="pagination">
+
+        </div>
+        <li>
+            <button onclick="xiayiye()" class="btn btn-info">&raquo;</button>
+        </li>
+    </ul>
+    <!-- 更新模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">修改用户</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="update">
+                        <input type="hidden" name="uid" id="uid">
+                        <div class="input-group">
+                            <span class="input-group-addon">身份证号码</span>
+                            <input type="text" id="number" name="number" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">密  码</span>
+                            <input type="text" id="password" name="password" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">昵称</span>
+                            <input type="text" id="nickname" name="nickname" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">真实姓名</span>
+                            <input type="text" id="realName" name="realName" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">性别</span>
+                            <input type="text" id="gender" name="gender" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">手机号</span>
+                            <input type="text" id="phone" name="phone" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">年龄</span>
+                            <input type="text" id="age" name="age" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">出生日期</span>
+                            <input type="text" id="birthday" name="birthday" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">创建日期</span>
+                            <input type="text" id="createTime" name="createTime" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">更新日期</span>
+                            <input type="text" id="updateTime" name="updateTime" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">预约时间</span>
+                            <input type="text" id="orderTime" name="orderTime" class="form-control">
+                        </div>
+                        <br>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" onclick="updateUser()" class="btn btn-primary">提交更改</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
     </div>
-</form>
-
-<table class="table table-hover">
-    <thead>
-    <th>ID</th>
-    <th>身份证号码</th>
-    <th>密码</th>
-    <th>昵称</th>
-    <th>真实姓名</th>
-    <th>性别</th>
-    <th>手机号</th>
-    <th>年龄</th>
-    <th>出生日期</th>
-    <th>创建日期</th>
-    <th>更新日期</th>
-    <th>预约时间</th>
-    <th>操作</th>
-    </thead>
-    <tbody id="info">
-
-    </tbody>
-</table>
-<ul class="pagination">
-    <li>
-        <button onclick="shangyiye()" class="btn btn-info">&laquo;</button>
-    </li>
-    <div class="pagination" id="pagination">
-
-    </div>
-    <li>
-        <button onclick="xiayiye()" class="btn btn-info">&raquo;</button>
-    </li>
-</ul>
-
-<!-- 更新模态框（Modal） -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">修改用户</h4>
-            </div>
-            <div class="modal-body">
-                <form id="update">
-                    <input type="hidden" name="uid" id="uid">
-                    <div class="input-group">
-                        <span class="input-group-addon">身份证号码</span>
-                        <input type="text" id="number" name="number" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">密  码</span>
-                        <input type="text" id="password" name="password" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">昵称</span>
-                        <input type="text" id="nickname" name="nickname" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">真实姓名</span>
-                        <input type="text" id="realName" name="realName" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">性别</span>
-                        <input type="text" id="gender" name="gender" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">手机号</span>
-                        <input type="text" id="phone" name="phone" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">年龄</span>
-                        <input type="text" id="age" name="age" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">出生日期</span>
-                        <input type="text" id="birthday" name="birthday" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">创建日期</span>
-                        <input type="text" id="createTime" name="createTime" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">更新日期</span>
-                        <input type="text" id="updateTime" name="updateTime" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">预约时间</span>
-                        <input type="text" id="orderTime" name="orderTime" class="form-control">
-                    </div>
-                    <br>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" onclick="updateUser()" class="btn btn-primary">提交更改</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-<!-- 删除模态框（Modal） -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <input type="hidden" id="delID">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span>
-                </button>
-                <h4 class="modal-title" id="exampleModalLabel">确认框</h4>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="message-text" class="control-label">确定要删除联系人？</label>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
-                <button type="button" class="btn btn-primary" onclick="del()">确认</button>
+    <!-- 删除模态框（Modal） -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <input type="hidden" id="delID">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">确认框</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">确定要删除联系人？</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                    <button type="button" class="btn btn-primary" onclick="del()">确认</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- 添加模态框（Modal） -->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="addModalLabel">添加用户</h4>
-            </div>
-            <div class="modal-body">
-                <form id="add">
-                    <div class="input-group">
-                        <span class="input-group-addon">ID</span>
-                        <input type="text" id="uid1" name="uid" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">身份证号码</span>
-                        <input type="text" id="number2" name="number" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">密  码</span>
-                        <input type="text" id="password1" name="password" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">昵称</span>
-                        <input type="text" id="nickname1" name="nickname" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">真实姓名</span>
-                        <input type="text" id="realName1" name="realName" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">性别</span>
-                        <input type="text" id="gender1" name="gender" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">手机号</span>
-                        <input type="text" id="phone1" name="phone" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">年龄</span>
-                        <input type="text" id="age1" name="age" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">出生日期</span>
-                        <input type="text" id="birthday1" name="birthday" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">创建日期</span>
-                        <input type="text" id="createTime1" name="createTime" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">更新日期</span>
-                        <input type="text" id="updateTime1" name="updateTime" class="form-control">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                        <span class="input-group-addon">预约时间</span>
-                        <input type="text" id="orderTime1" name="orderTime" class="form-control">
-                    </div>
-                    <br>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" onclick="addUser()" class="btn btn-primary">保存添加</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
+    <!-- 添加模态框（Modal） -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="addModalLabel">添加用户</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="add">
+                        <div class="input-group">
+                            <span class="input-group-addon">ID</span>
+                            <input type="text" id="uid1" name="uid" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">身份证号码</span>
+                            <input type="text" id="number2" name="number" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">密  码</span>
+                            <input type="text" id="password1" name="password" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">昵称</span>
+                            <input type="text" id="nickname1" name="nickname" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">真实姓名</span>
+                            <input type="text" id="realName1" name="realName" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">性别</span>
+                            <input type="text" id="gender1" name="gender" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">手机号</span>
+                            <input type="text" id="phone1" name="phone" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">年龄</span>
+                            <input type="text" id="age1" name="age" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">出生日期</span>
+                            <input type="text" id="birthday1" name="birthday" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">创建日期</span>
+                            <input type="text" id="createTime1" name="createTime" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">更新日期</span>
+                            <input type="text" id="updateTime1" name="updateTime" class="form-control">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">预约时间</span>
+                            <input type="text" id="orderTime1" name="orderTime" class="form-control">
+                        </div>
+                        <br>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" onclick="addUser()" class="btn btn-primary">保存添加</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
 </div>
 
 <script>

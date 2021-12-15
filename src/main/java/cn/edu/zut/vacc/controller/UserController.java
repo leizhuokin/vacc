@@ -28,7 +28,7 @@ public class UserController {
             mav.addObject("msg","登录成功");
             mav.addObject("users",users);
         }else{
-            mav.setViewName("index1");
+            mav.setViewName("index");
             mav.addObject("msg","用户名或密码错误");
         }
         return mav;

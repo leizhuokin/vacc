@@ -24,11 +24,16 @@ public class IndexController {
     }
     @RequestMapping("/index")
     public String index(){
-        return "index1";
+        return "index";
     }
     @RequestMapping("/menu")
     public String menu(){
         return "menu";
     }
 
+
+//    @RequestMapping("/menu2")
+//    public String menu2(){
+//        return "menu";
+//    }
 }
