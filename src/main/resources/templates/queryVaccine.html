@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>疫苗管理</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -12,14 +12,14 @@
 <form id="queryUserName" class="bs-example bs-example-form" role="form">
     <div class="input-group">
         <span class="input-group-addon">疫苗编号</span>
-        <input type="text" id="vno1" name="vno" class="form-control" style="width: 100px;float: left">
+        <input type="text" id="vno1" name="vno" class="form-control" style="width: 150px;float: left">
         <!--    查询按钮-->
         <button class="btn btn-info" type="button" onclick="queryVaccineName() ">查询</button>
         <!-- 添加按钮-->
         <button type="button" onclick="add(vaccine[i].vid,vaccine[i].vno,vaccine[i].vname,vaccine[i].ssex,vaccine[i].proTime,vaccine[i].exp )"
-                class="btn btn-success" data-toggle="modal" data-target="#addModal" style="position: absolute;top: 0rem;right: 27.5rem;">添加</button>
+                class="btn btn-success" data-toggle="modal" data-target="#addModal" style="position: absolute;top: 0rem;right: 31.5rem;">添加</button>
         <!-- 返回按钮-->
-        <button class="btn btn-primary" type="button" onclick="window.location.href='/menu'" style="position: absolute;top: 0rem;right: 10.5rem;">返回</button>
+        <button class="btn btn-primary" type="button" onclick="window.location.href='/menu'" style="position: absolute;top: 0rem;right: 13rem;">返回</button>
     </div>
     </form>
 <table class="table table-hover">
@@ -161,10 +161,9 @@
     </div><!-- /.modal -->
 </div>
 
-
 <script>
     $(function () {
-        queryVaccine(1,2)
+        queryVaccine(1,6)
     });
     var current1 = 1;
     var pages1 = 0;
@@ -213,7 +212,7 @@
         } else {
             current1 = current1 - 1;
         }
-        queryVaccine(current1, 2);
+        queryVaccine(current1, 6);
     }
     function xiayiye() {
         if (current1 >= pages1){
@@ -221,7 +220,7 @@
         }else {
             current1 = current1+1;
         }
-        queryVaccine(current1,2);
+        queryVaccine(current1,6);
     }
 
     function update(vid, vno, vname,ssex,proTime,exp) {
@@ -292,7 +291,7 @@
         $.ajax({
             type: "post",
             url: "/vaccine/queryVaccineName",
-            data: {vno: vno,current: 1, size: 2},
+            data: {vno: vno,current: 1, size: 6},
             dataType: "json",
             success: function (data) {
                 console.log(data);

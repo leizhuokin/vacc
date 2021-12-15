@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>接种信息管理</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -12,14 +12,14 @@
 <form id="queryUserName" class="bs-example bs-example-form" role="form">
     <div class="input-group">
         <span class="input-group-addon">ID</span>
-        <input type="text" id="id2" name="id" class="form-control" style="width: 100px;float: left">
+        <input type="text" id="id2" name="id" class="form-control" style="width: 150px;float: left">
         <!--    查询按钮-->
         <button class="btn btn-info" type="button" onclick="queryUserName()">查询</button>
         <!-- 添加按钮-->
         <button type="button" onclick="add(user_vaccine[i].id ,user_vaccine[i].inoculationTime ,user_vaccine[i].uid ,user_vaccine[i].vid)"
-                class="btn btn-success" data-toggle="modal" data-target="#addModal" style="position: absolute;top: 0rem;right: 37.5rem;">添加</button>
+                class="btn btn-success" data-toggle="modal" data-target="#addModal" style="position: absolute;top: 0rem;right: 43.7rem;">添加</button>
         <!-- 返回按钮-->
-        <button class="btn btn-primary" type="button" onclick="window.location.href='/menu'" style="position: absolute;top: 0rem;right: 15.5rem;">返回</button>
+        <button class="btn btn-primary" type="button" onclick="window.location.href='/menu'" style="position: absolute;top: 0rem;right: 18.8rem;">返回</button>
     </div>
 </form>
 <table class="table table-hover">
@@ -147,7 +147,7 @@
     } else {
         current1 = current1 - 1;
     }
-    queryUV(current1, 2);
+    queryUV(current1, 6);
 }
     function xiayiye() {
     if (current1 >= pages1){
@@ -155,10 +155,10 @@
     }else {
         current1 = current1+1;
     }
-    queryUV(current1,2);
+    queryUV(current1,6);
 }
     $(function () {
-        queryUV(1,2)
+        queryUV(1,6)
     });
     var current1 = 1;
     var pages1 = 0;
@@ -264,7 +264,7 @@
         $.ajax({
             type: "post",
             url: "/user-vaccine/queryUserName",
-            data: {id: number, current: 1, size: 2},
+            data: {id: number, current: 1, size: 6},
             dataType: "json",
             success: function (data) {
                 console.log(data);
