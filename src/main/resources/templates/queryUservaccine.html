@@ -199,14 +199,13 @@
         });
     }
 
-
-    function update(id, inoculationTime, uid,vid)
-    {
+    function update(id, inoculationTime, uid,vid){
         $("#id").val(id);
         $("#inoculationTime").val(inoculationTime);
         $("#uid").val(uid);
         $("#vid").val(vid);
     }
+
     function updateUVser() {
         $.ajax({
             type: "post",
@@ -228,6 +227,7 @@
         $("#uid").val(uid);
         $("#vid").val(vid);
     }
+
     function addUser() {
         $.ajax({
             type: "post",

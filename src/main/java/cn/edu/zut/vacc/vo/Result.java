@@ -1,13 +1,7 @@
 package cn.edu.zut.vacc.vo;
 import lombok.Data;
 
-/**
- * @author ：王志恒（1024044696@qq.com）
- * @date ：Created in 2021/12/5 16:52
- * @description：
- * @modified By：
- * @version:
- */
+
 @Data
 public class Result {
     private Integer code;
